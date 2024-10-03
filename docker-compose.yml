@@ -1,0 +1,16 @@
+services:
+  jupyterlab:
+    build: .
+    devices:
+      - /dev/kfd
+      - /dev/dri
+    security_opt:
+      - seccomp:unconfined
+    ports:
+      - "8888:8888"  
+    volumes:
+      - ./workspace:/workspace  
+    environment:
+      - JUPYTER_TOKEN=${JUPYTER_TOKEN}
+      - HSA_OVERRIDE_GFX_VERSION=10.3.0
+
